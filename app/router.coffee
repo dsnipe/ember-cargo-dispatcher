@@ -9,8 +9,8 @@ Router.map ->
     @route 'new'
   @resource 'organizations', ->
     @route 'new'
-    @route 'edit'
-  # @route 'AddressesIndexRoute'
-  @route 'organizations/new'
+  @resource 'routes', ->
+    @route 'new'
+  @route 'routes/new'
 
 `export default Router`
