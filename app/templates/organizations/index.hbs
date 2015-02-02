@@ -1,10 +1,25 @@
+<h2>Organizations</h2>
 {{#link-to "organizations.new" class='btn btn-primary'}}Create New{{/link-to}}
 
-<div>List of addresses</div>
-
-{{#each}}
-  <div>
-    {{id}}: <b>{{name}}</b>
-
-  </div>
-{{/each}}
+<table class='table table-striped table-hover'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |org index|}}
+    <tr>
+      <td>{{index}}</td>
+      <td>{{org.name}}</td>
+      <td>
+        <a href="#" {{action 'removeOrganization' org}}>
+          <span class="glyphicon glyphicon-remove"></span>
+        </a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

@@ -1,1 +1,51 @@
 New Cargo
+
+{{#em-form model=model.cargo form_layout="horizontal" submit_button=false}}
+
+  {{em-input property="name" label="Name" placeholder="Enter the name of cargo"}}
+
+  <div class="form-group">
+    <label class="col-md-2 control-label">Items</label>
+    <div class="col-md-10">
+      {{#if isItems}}
+        <table class="table table-striped">
+          <tr>
+            <th>Name</th>
+            <th>Weight</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+          </tr>
+          {{#each model.cargo.items as |item|}}
+            <tr>
+              <td>{{item.name}}</td>
+              <td>{{item.weight}}</td>
+              <td>{{item.quantity}}</td>
+              <td>
+                <button {{action 'deleteItem' item}}>X</button>
+              </td>
+            </tr>
+        {{/each}}
+        </table>
+      {{else}}
+        No items
+      {{/if}}
+    </div>
+  </div>
+
+{{/em-form}}
+<div class="col-md-offset-2">
+  {{#em-form model=model.item form_layout='inline' submit_button=false}}
+    {{em-input property="name" type="text" name="name" placeholder='Item name'}}
+    {{em-input property="weight" placeholder='Item weight'}}
+    {{em-input property="quantity" placeholder='Item quantity'}}
+
+    <button class="btn btn-default" {{action 'addItem'}} disabled="{{model.item.isntValid}}">Add Item</button>
+  {{/em-form}}
+</div>
+<div class="col-md-offset-11">
+  <button class="btn btn-success" {{action 'submit'}} disabled="{{model.cargo.isntValid}}">Add cargo</button>
+</div>
+<hr>
+{{#if model.cargo.weight}}
+  <h3>Total weight: {{model.cargo.weight}}</h3>
+{{/if}}
